@@ -6,11 +6,13 @@ const gui = new dat.GUI()
 const params = {
     Alpha: 17,
     N: 1000,
+    p: 0.7,
     Random_Seed: 0,
     Download_Image: () => save(),
 }
 gui.add(params, "Alpha", 0, 255, 1)
 gui.add(params, "N", 0, 3000, 1)
+gui.add(params, "p", 0, 1, 0.001)
 gui.add(params, "Random_Seed", 0, 100, 1)
 gui.add(params, "Download_Image")
 
@@ -31,7 +33,7 @@ function draw() {
         ]))
         push()
             translate(random(width), random(height))
-            if (random() < 0.7)
+            if (random() < params.p)
                 rotate(TAU/4)
             rect(0, 0, random(80, 100), random(25, 40), 30)
         pop()
